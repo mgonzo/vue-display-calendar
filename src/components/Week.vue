@@ -1,7 +1,7 @@
 <template>
   <div class="week">
-    <div>{{ sunday }}</div>
-    <div v-for="day in days">
+    <div style="display:none">{{ sunday }}</div>
+    <div class="day" v-for="day in days">
       <span>{{ day.name }}</span>
       <span>{{ day.date }}</span>
     </div>
@@ -77,4 +77,77 @@ li {
 a {
   color: #42b983;
 }
+
+.day {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  box-sizing: border-box;
+  padding-top: 1em;
+  display: block;
+  height: 7em;
+  margin: 0;
+  vertical-align: top;
+  width: 100%;
+}
+
+.day:last-child {
+  border-right: 1px solid #ccc;
+}
+
+.inactive {
+  display:none;
+}
+
+@media (min-width: 700px) {
+  .week {
+    // border-top: 1px solid #ccc;
+    width: 700px;
+  }
+  .week:last-child {
+    border-bottom: 1px solid #ccc;
+  }
+  .day {
+    border-right: 0;
+    display: table-cell;
+    height: 7em;
+    vertical-align: top;
+    width: 86px;
+  }
+
+  .inactive {
+    background: #ddd;
+    border-left: 1px solid #bbb;
+  }
+    
+}
+
+@media (min-width: 910px) {
+  .week {
+    width: 910px;
+  }
+  .day {
+    width: 130px;
+  }
+}
+
+@media (min-width: 1190px) {
+  .week {
+    width: 1190px;
+  }
+  .day {
+    width: 170px;
+  }
+}
+
+@media (min-width: 1505px) {
+  .week {
+    width: 1505px;
+  }
+  .day {
+    width: 215px;
+  }
+}
+
 </style>

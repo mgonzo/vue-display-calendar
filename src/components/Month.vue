@@ -3,8 +3,10 @@
     <span v-on:click="back">back</span>
     <span v-on:click="forward">foward</span>
     <h2>{{ month.name }}</h2>
-    <week v-for="week in weeks"
-          v-bind:sunday="week.sunday"></week>
+    <div class="grid">
+      <week v-for="week in weeks"
+            v-bind:sunday="week.sunday"></week>
+    </div>
   </div>
 </template>
 
@@ -72,7 +74,7 @@ export default {
   methods: {
     back: function () {
       this.index -= 1
-      if (this.index < 1) {
+      if (this.index < 0) {
         this.index = 11
         this.year -= 1
       }
@@ -82,7 +84,7 @@ export default {
     forward: function () {
       this.index += 1
       if (this.index > 11) {
-        this.index = 1
+        this.index = 0
         this.year += 1
       }
       this.update()
@@ -140,5 +142,30 @@ li {
 
 a {
   color: #42b983;
+}
+
+@media (min-width: 700px) {
+  .grid {
+    width: 700px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 910px) {
+  .grid {
+    width: 910px;
+  }
+}
+
+@media (min-width: 1190px) {
+  .grid {
+    width: 1190px;
+  }
+}
+
+@media (min-width: 1505px) {
+  .grid {
+    width: 1505px;
+  }
 }
 </style>
