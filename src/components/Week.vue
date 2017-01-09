@@ -2,10 +2,9 @@
   <div class="week">
     <div style="display:none">{{ sunday }}</div>
     <div class="day"
-         v-bind:class="{ inactive: !day.active }"
+         v-bind:class="{ inactive: !day.active, today: day.today }"
          v-for="day in days">
-      <span>{{ day.name }}</span>
-      <span>{{ day.date }}</span>
+      <span class="date">{{ day.date }}</span>
     </div>
   </div>
 </template>
@@ -19,31 +18,43 @@ export default {
       days: [{
         name: 'Sunday',
         date: '',
-        active: true
+        active: true,
+        today: false
       }, {
         name: 'Monday',
         date: '',
-        active: true
+        active: true,
+        today: false
+
       }, {
         name: 'Tuesday',
         date: '',
-        active: true
+        active: true,
+        today: false
+
       }, {
         name: 'Wednesday',
         date: '',
-        active: true
+        active: true,
+        today: false
+
       }, {
         name: 'Thursday',
         date: '',
-        active: true
+        active: true,
+        today: false
+
       }, {
         name: 'Friday',
         date: '',
-        active: true
+        active: true,
+        today: false
+
       }, {
         name: 'Saturday',
         date: '',
-        active: true
+        active: true,
+        today: false
       }]
     }
   },
@@ -59,9 +70,11 @@ export default {
     update: function () {
       let that = this
       let date = new Date(this.sunday)
+      let today = new Date()
       this.days.map(function (day, index) {
         day.active = (date.getMonth() === that.index)
-        day['date'] = date.toString()
+        day.today = (date.toDateString() === today.toDateString())
+        day['date'] = date.getDate()
         date.setDate(date.getDate() + 1)
       })
     }
@@ -105,6 +118,10 @@ a {
 
 .day:last-child {
   border-right: 1px solid #ccc;
+}
+
+.today {
+  background-color: #ededed;
 }
 
 .inactive {

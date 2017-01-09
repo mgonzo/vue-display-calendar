@@ -2,8 +2,19 @@
   <div class="month">
     <span v-on:click="back">back</span>
     <span v-on:click="forward">foward</span>
-    <h2>{{ month.name }}</h2>
+    <h2>{{ month.name }}, {{ year }}</h2>
     <div class="grid">
+      <div class="header">
+        <ul class="days-of-the-week">
+          <li>Sunday</li>
+          <li>Monday</li>
+          <li>Tuesday</li>
+          <li>Wednesday</li>
+          <li>Thursday</li>
+          <li>Friday</li>
+          <li>Saturday</li>
+        </ul>
+      </div>
       <week v-for="week in weeks"
             v-bind:index="week.index"
             v-bind:sunday="week.sunday"></week>
@@ -134,16 +145,22 @@ h1, h2 {
 
 ul {
   list-style-type: none;
+  margin: 0;
   padding: 0;
 }
 
 li {
   display: inline-block;
   margin: 0;
+  padding: 0;
 }
 
 a {
   color: #42b983;
+}
+
+.days-of-the-week {
+  display: none;
 }
 
 @media (min-width: 700px) {
@@ -151,11 +168,29 @@ a {
     width: 700px;
     margin: 0 auto;
   }
+
+  .header {
+    margin-bottom: 1em;
+  }
+
+  .days-of-the-week {
+    display: table-row;
+    height: 2em;
+    background-color: #ccc;
+  }
+  .days-of-the-week > li {
+    display: table-cell;
+    width: 86px;
+    padding-top: .5em;
+  }
 }
 
 @media (min-width: 910px) {
   .grid {
     width: 910px;
+  }
+  .days-of-the-week > li {
+    width: 130px;
   }
 }
 
@@ -163,11 +198,17 @@ a {
   .grid {
     width: 1190px;
   }
+  .days-of-the-week > li {
+    width: 170px;
+  }
 }
 
 @media (min-width: 1505px) {
   .grid {
     width: 1505px;
+  }
+  .days-of-the-week > li {
+    width: 215px;
   }
 }
 </style>
