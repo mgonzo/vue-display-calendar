@@ -1,7 +1,9 @@
 <template>
   <div class="week">
     <div style="display:none">{{ sunday }}</div>
-    <div class="day" v-for="day in days">
+    <div class="day"
+         v-bind:class="{ inactive: !day.active }"
+         v-for="day in days">
       <span>{{ day.name }}</span>
       <span>{{ day.date }}</span>
     </div>
@@ -11,30 +13,37 @@
 <script>
 export default {
   name: 'week',
-  props: ['sunday'],
+  props: ['sunday', 'index'],
   data () {
     return {
       days: [{
         name: 'Sunday',
-        date: ''
+        date: '',
+        active: true
       }, {
         name: 'Monday',
-        date: ''
+        date: '',
+        active: true
       }, {
         name: 'Tuesday',
-        date: ''
+        date: '',
+        active: true
       }, {
         name: 'Wednesday',
-        date: ''
+        date: '',
+        active: true
       }, {
         name: 'Thursday',
-        date: ''
+        date: '',
+        active: true
       }, {
         name: 'Friday',
-        date: ''
+        date: '',
+        active: true
       }, {
         name: 'Saturday',
-        date: ''
+        date: '',
+        active: true
       }]
     }
   },
@@ -48,8 +57,10 @@ export default {
 
   methods: {
     update: function () {
+      let that = this
       let date = new Date(this.sunday)
       this.days.map(function (day, index) {
+        day.active = (date.getMonth() === that.index)
         day['date'] = date.toString()
         date.setDate(date.getDate() + 1)
       })

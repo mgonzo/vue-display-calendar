@@ -5,6 +5,7 @@
     <h2>{{ month.name }}</h2>
     <div class="grid">
       <week v-for="week in weeks"
+            v-bind:index="week.index"
             v-bind:sunday="week.sunday"></week>
     </div>
   </div>
@@ -104,7 +105,8 @@ export default {
       let i = 0
       while (i < (offset + this.months[this.index].days) / 7) {
         this.weeks.push({
-          sunday: this.date.toString()
+          sunday: this.date.toString(),
+          index: this.index
         })
         i += 1
         this.date.setDate(this.date.getDate() + 7)
